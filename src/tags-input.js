@@ -220,6 +220,10 @@ tagsInput.directive('tagsInput', function($timeout, $document, tagsInputConfig) 
 
                         setElementValidity();
                     }
+                    else
+                    {
+                      scope.newTag = { text: '', invalid: null };
+                    }
                 })
                 .on('option-change', function(e) {
                     if (validationOptions.indexOf(e.name) !== -1) {
@@ -266,6 +270,11 @@ tagsInput.directive('tagsInput', function($timeout, $document, tagsInputConfig) 
 
                     if (isModifier || hotkeys.indexOf(key) === -1) {
                         return;
+                    }
+
+                    if(key === 13)
+                    {
+                      scope.newTag = { text: '', invalid: null };
                     }
 
                     addKeys[KEYS.enter] = options.addOnEnter;

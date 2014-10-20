@@ -64,12 +64,31 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, tagsInpu
                         return;
                     }
 
+                    if(options.filterResults)
+                    {
+                      var tempArr = [];
+                      for (var i = 0; i < items.length; i++)
+                      {
+                        if(items[i].text == undefined || items[i].text == null)
+                        {
+                          items[i].text = items[i].name != null ? items[i].name : "";
+                        }
+
+                        if(items[i].text.toLowerCase().indexOf(query.toLowerCase()) !== -1 || query.length <= 1)
+                        {
+                          tempArr.push(items[i]);
+                        }
+                      }
+                      items = tempArr;
+                    }
+
                     items = makeObjectArray(items.data || items, options.tagsInput.displayProperty);
                     items = getDifference(items, tags);
                     self.items = items.slice(0, options.maxResultsToShow);
 
                     if (self.items.length > 0) {
                         self.show();
+                        self.select(0);
                     }
                     else {
                         self.reset();
@@ -113,6 +132,7 @@ tagsInput.directive('autoComplete', function($document, $timeout, $sce, tagsInpu
                 minLength: [Number, 3],
                 highlightMatchedText: [Boolean, true],
                 maxResultsToShow: [Number, 10],
+                filterResults: [Boolean, true],
                 loadOnDownArrow: [Boolean, false],
                 loadOnEmpty: [Boolean, false],
                 loadOnFocus: [Boolean, false]
