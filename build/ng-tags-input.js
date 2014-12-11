@@ -5,7 +5,7 @@
  * Copyright (c) 2013-2014 Michael Benford
  * License: MIT
  *
- * Generated at 2014-10-20 15:17:15 -0400
+ * Generated at 2014-12-11 12:07:28 -0500
  */
 (function() {
 'use strict';
@@ -362,7 +362,7 @@ tagsInput.directive('tagsInput', ["$timeout","$document","tagsInputConfig", func
                         return;
                     }
 
-                    if(key === 13)
+                    if(key === 13 && options.addFromAutocompleteOnly)
                     {
                       scope.newTag = { text: '', invalid: null };
                     }
