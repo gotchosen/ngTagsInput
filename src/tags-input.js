@@ -272,7 +272,7 @@ tagsInput.directive('tagsInput', function($timeout, $document, tagsInputConfig) 
                         return;
                     }
 
-                    if(key === 13)
+                    if(key === 13 && options.addFromAutocompleteOnly)
                     {
                       scope.newTag = { text: '', invalid: null };
                     }
