@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
     var config = {
         pkg: grunt.file.readJSON('package.json'),
-        bowerDirectory: './build',
+        bowerDirectory: '.',
         bowerFile: '<%= bowerDirectory %>/bower.json',
 
         files: {
